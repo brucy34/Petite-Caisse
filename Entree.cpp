@@ -22,7 +22,8 @@ Entree::Entree()
     fraisDeplacement=new QDoubleSpinBox();
     fraisVente=new QDoubleSpinBox();
     fraisDivers=new QDoubleSpinBox();
-    valCaisse=new QDoubleSpinBox();
+    valCaisse1=new QDoubleSpinBox();
+    valCaisse2=new QDoubleSpinBox();
     dateRenflouement=new QDateEdit();
     dateRenflouement->setDate(QDate::currentDate());
 
@@ -32,8 +33,10 @@ Entree::Entree()
     layout2->addRow("Frais de dép&lacement :",fraisDeplacement);
     layout2->addRow("Frais de &vente :",fraisVente);
     layout2->addRow("Frais d&ivers :",fraisDivers);
-    layout2->addRow("M&ontant réel de la Petite Caisse :",valCaisse);
+    layout2->addRow("Dé&ficit de caisse :",valCaisse1);
+    layout2->addRow("Sur&plus de caisse :",valCaisse2);
     layout2->addRow("Date de &renflouement :",dateRenflouement);
+
 
     QGroupBox *groupe2=new QGroupBox("Renflouement de la Petite Caisse");
     groupe2->setLayout(layout2);
@@ -79,4 +82,54 @@ Entree::Entree()
     connect(bouton1, SIGNAL(clicked()),qApp, SLOT(quit()));
     connect(bouton2, SIGNAL(clicked()),this, SLOT(genererCode()));
 
+}
+
+
+void Entree::genererCode()
+{
+    if(montantCreation->text()=="0,00")
+    {
+        QMessageBox::critical(this,"Erreur!!","Veuillez entrez au moins une valeur de Petite Caisse");
+        return;
+    }
+
+    QString code;
+
+    code +="                             Journal Général                 \n";
+    code +="Date                |Noms et explications des comptes               |DT             |CT\n";
+
+
+    code +=dateCreation->date().toString();
+
+    code +="       Petite Caisse               ";
+    code +="                "+ montantCreation->text()+"\n";
+    code +="                         @Encaisse                                                   "+montantCreation->text()+"\n";
+    code +="                        Création de la petite caisse\n";
+    code +="                    ________________________________________________\n";
+
+
+    code +=dateRenflouement->date().toString();
+    code +="       Frais de poste              ";
+    code +="                "+ fraisPoste->text()+"\n";
+    code +="                         Frais de transport à l'achat                "+fraisTransport->text()+"\n";
+    code +="                         Frais de déplacement                        "+fraisDeplacement->text()+"\n";
+    code +="                         Frais de vente                              "+fraisVente->text()+"\n";
+    code +="                         Frais divers                                "+fraisDivers->text()+"\n";
+    code +="                         Déficit de caisse                           "+valCaisse1->text()+"\n";
+    code +="                         @Surplus de Caisse                                          "+valCaisse2->text()+"\n";
+    code +="                         @Encaisse                                                   "+valCaisse2->text()+"\n";
+    code +="                    ________________________________________________\n";
+
+
+    if(augmentation->isChecked())
+    {
+    code +=dateAugmentation->date().toString();
+    code +="       Petite Caisse               ";
+    code +="                "+montAugmentation->text()+"\n";
+    code +="                         @Encaisse                                                   "+montAugmentation->text()+"\n";
+    }
+
+
+    Sortie *fenetreCode=new Sortie(code,this);
+    fenetreCode->exec();
 }

@@ -20,6 +20,7 @@ class Entree: public QWidget
  public:
     Entree();
 
+
 private slots:
     void genererCode();
 
@@ -32,12 +33,14 @@ private slots:
     QDoubleSpinBox *fraisDeplacement;
     QDoubleSpinBox *fraisVente;
     QDoubleSpinBox *fraisDivers;
-    QDoubleSpinBox *valCaisse;
+    QDoubleSpinBox *valCaisse1;
+    QDoubleSpinBox *valCaisse2;
     QDateEdit *dateRenflouement;
     QDoubleSpinBox *montAugmentation;
     QDateEdit *dateAugmentation;
     QPushButton *bouton1;
     QPushButton *bouton2;
+    double encaisse;
 
 };
 
