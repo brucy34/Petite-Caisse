@@ -14,15 +14,18 @@
 #include <QMessageBox>
 #include <QFormLayout>
 
+
 class Entree: public QWidget
 {
     Q_OBJECT
  public:
     Entree();
+    QDoubleSpinBox *encaisse;
 
 
 private slots:
     void genererCode();
+    void additionner();
 
  private:
     QGroupBox *augmentation;
@@ -40,7 +43,7 @@ private slots:
     QDateEdit *dateAugmentation;
     QPushButton *bouton1;
     QPushButton *bouton2;
-    double encaisse;
+    QPushButton *calEncaisse;
 
 };
 

@@ -4,6 +4,7 @@
 
 Entree::Entree()
 {
+
     dateCreation=new QDateEdit();
     dateCreation->setDate(QDate::currentDate());
     montantCreation=new QDoubleSpinBox();
@@ -16,7 +17,7 @@ Entree::Entree()
     groupe1->setLayout(layout1);
 
 
-
+    calEncaisse=new QPushButton("Calcul de l'encaisse");
     fraisPoste=new QDoubleSpinBox();
     fraisTransport=new QDoubleSpinBox();
     fraisDeplacement=new QDoubleSpinBox();
@@ -25,7 +26,10 @@ Entree::Entree()
     valCaisse1=new QDoubleSpinBox();
     valCaisse2=new QDoubleSpinBox();
     dateRenflouement=new QDateEdit();
+    encaisse=new QDoubleSpinBox(this);
+    connect(calEncaisse, SIGNAL(clicked()), this, SLOT(additionner()));
     dateRenflouement->setDate(QDate::currentDate());
+
 
     QFormLayout *layout2=new QFormLayout;
     layout2->addRow("Frais de &poste :",fraisPoste);
@@ -36,6 +40,8 @@ Entree::Entree()
     layout2->addRow("Dé&ficit de caisse :",valCaisse1);
     layout2->addRow("Sur&plus de caisse :",valCaisse2);
     layout2->addRow("Date de &renflouement :",dateRenflouement);
+    layout2->addRow("Monta&nt sortie de l'encaisse :",encaisse);
+    layout2->addWidget(calEncaisse);
 
 
     QGroupBox *groupe2=new QGroupBox("Renflouement de la Petite Caisse");
@@ -84,12 +90,15 @@ Entree::Entree()
 
 }
 
-
+void Entree::additionner()
+{
+     encaisse->setValue(fraisDeplacement->value()+fraisDivers->value()+fraisPoste->value()+fraisTransport->value()+fraisVente->value()+valCaisse1->value()-valCaisse2->value());
+}
 void Entree::genererCode()
 {
-    if(montantCreation->text()=="0,00")
+    if(montantCreation->text()=="0,00" or encaisse->text()=="0,00")
     {
-        QMessageBox::critical(this,"Erreur!!","Veuillez entrez au moins une valeur de Petite Caisse");
+        QMessageBox::critical(this,"Erreur!!","Veuillez entrez au moins une valeur de Petite Caisse et/ou d'Encaisse ");
         return;
     }
 
@@ -117,7 +126,10 @@ void Entree::genererCode()
     code +="                         Frais divers                                "+fraisDivers->text()+"\n";
     code +="                         Déficit de caisse                           "+valCaisse1->text()+"\n";
     code +="                         @Surplus de Caisse                                          "+valCaisse2->text()+"\n";
-    code +="                         @Encaisse                                                   "+valCaisse2->text()+"\n";
+    code +="                         @Encaisse                                                   ";
+    code + encaisse->value() ;
+    code +="\n";
+    code +="                        Pour comptabliser le renflouement de la petite caisse\n";
     code +="                    ________________________________________________\n";
 
 
@@ -127,6 +139,8 @@ void Entree::genererCode()
     code +="       Petite Caisse               ";
     code +="                "+montAugmentation->text()+"\n";
     code +="                         @Encaisse                                                   "+montAugmentation->text()+"\n";
+    code +="                        Pour comptabliser l'augmentation de la Petite Caisse\n";
+    code +="                    _______________________________________________\n";
     }
 
 
