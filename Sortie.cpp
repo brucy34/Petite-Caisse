@@ -1,5 +1,5 @@
 #include "Sortie.h"
-#include "Entree.h"
+
 
 
 Sortie::Sortie(QString &code, QWidget *parent=0): QDialog(parent)
@@ -9,7 +9,6 @@ Sortie::Sortie(QString &code, QWidget *parent=0): QDialog(parent)
     codeGenere->setReadOnly(true);
     codeGenere->setFont(QFont("Courier"));
     codeGenere->setLineWrapMode(QTextEdit::NoWrap);
-    encaisse->value();
 
     fermer=new QPushButton("Fermer");
 

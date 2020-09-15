@@ -7,6 +7,7 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QDoubleSpinBox>
 
 class Sortie: public QDialog
 {
@@ -17,5 +18,6 @@ public:
 private:
     QTextEdit *codeGenere;
     QPushButton *fermer;
+    QDoubleSpinBox *encaisse;
 };
 #endif // SORTIE_H

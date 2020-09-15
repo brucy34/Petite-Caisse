@@ -93,6 +93,7 @@ Entree::Entree()
 void Entree::additionner()
 {
      encaisse->setValue(fraisDeplacement->value()+fraisDivers->value()+fraisPoste->value()+fraisTransport->value()+fraisVente->value()+valCaisse1->value()-valCaisse2->value());
+
 }
 void Entree::genererCode()
 {
@@ -126,9 +127,7 @@ void Entree::genererCode()
     code +="                         Frais divers                                "+fraisDivers->text()+"\n";
     code +="                         Déficit de caisse                           "+valCaisse1->text()+"\n";
     code +="                         @Surplus de Caisse                                          "+valCaisse2->text()+"\n";
-    code +="                         @Encaisse                                                   ";
-    code + encaisse->value() ;
-    code +="\n";
+    code +="                         @Encaisse                                                   "+encaisse->text()+"\n";
     code +="                        Pour comptabliser le renflouement de la petite caisse\n";
     code +="                    ________________________________________________\n";
 
