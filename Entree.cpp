@@ -8,6 +8,7 @@ Entree::Entree()
     dateCreation=new QDateEdit();
     dateCreation->setDate(QDate::currentDate());
     montantCreation=new QDoubleSpinBox();
+    montantCreation->setMaximum(1000000);
 
     QFormLayout *layout1=new QFormLayout;
     layout1->addRow("&Date de création :",dateCreation);
@@ -27,6 +28,16 @@ Entree::Entree()
     valCaisse2=new QDoubleSpinBox();
     dateRenflouement=new QDateEdit();
     encaisse=new QDoubleSpinBox(this);
+    fraisDeplacement->setMaximum(1000000);
+    fraisDivers->setMaximum(1000000);
+    fraisPoste->setMaximum(1000000);
+    fraisTransport->setMaximum(1000000);
+    fraisVente->setMaximum(1000000);
+    valCaisse1->setMaximum(1000000);
+    valCaisse2->setMaximum(1000000);
+    encaisse->setMaximum(1000000);
+
+
     connect(calEncaisse, SIGNAL(clicked()), this, SLOT(additionner()));
     dateRenflouement->setDate(QDate::currentDate());
 
@@ -52,6 +63,8 @@ Entree::Entree()
     montAugmentation=new QDoubleSpinBox();
     dateAugmentation=new QDateEdit();
     dateAugmentation->setDate(QDate::currentDate());
+    montAugmentation->setMaximum(1000000);
+
 
     QFormLayout *layout3=new QFormLayout();
     layout3->addRow("Mon&tant de l'augmentation :",montAugmentation);
