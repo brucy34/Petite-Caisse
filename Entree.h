@@ -26,6 +26,7 @@ class Entree: public QWidget
 private slots:
     void genererCode();
     void additionner();
+    void ecartCaisse();
 
  private:
     QGroupBox *augmentation;
@@ -36,6 +37,7 @@ private slots:
     QDoubleSpinBox *fraisDeplacement;
     QDoubleSpinBox *fraisVente;
     QDoubleSpinBox *fraisDivers;
+    QDoubleSpinBox *montReel;
     QDoubleSpinBox *valCaisse1;
     QDoubleSpinBox *valCaisse2;
     QDateEdit *dateRenflouement;
@@ -44,6 +46,7 @@ private slots:
     QPushButton *bouton1;
     QPushButton *bouton2;
     QPushButton *calEncaisse;
+    QPushButton *ecart;
 
 };
 

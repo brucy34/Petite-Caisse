@@ -19,11 +19,13 @@ Entree::Entree()
 
 
     calEncaisse=new QPushButton("Calcul de l'encaisse");
+    ecart=new QPushButton("Calcul de l'ecart de caisse");
     fraisPoste=new QDoubleSpinBox();
     fraisTransport=new QDoubleSpinBox();
     fraisDeplacement=new QDoubleSpinBox();
     fraisVente=new QDoubleSpinBox();
     fraisDivers=new QDoubleSpinBox();
+    montReel=new QDoubleSpinBox();
     valCaisse1=new QDoubleSpinBox();
     valCaisse2=new QDoubleSpinBox();
     dateRenflouement=new QDateEdit();
@@ -39,6 +41,8 @@ Entree::Entree()
 
 
     connect(calEncaisse, SIGNAL(clicked()), this, SLOT(additionner()));
+    connect(ecart, SIGNAL(clicked()),this, SLOT(ecartCaisse()));
+    connect(ecart, SIGNAL(clicked()),this, SLOT(ecartCaisse()));
     dateRenflouement->setDate(QDate::currentDate());
 
 
@@ -48,11 +52,13 @@ Entree::Entree()
     layout2->addRow("Frais de dép&lacement :",fraisDeplacement);
     layout2->addRow("Frais de &vente :",fraisVente);
     layout2->addRow("Frais d&ivers :",fraisDivers);
+    layout2->addRow("Montant réel de la caisse: ",montReel);
     layout2->addRow("Dé&ficit de caisse :",valCaisse1);
     layout2->addRow("Sur&plus de caisse :",valCaisse2);
     layout2->addRow("Date de &renflouement :",dateRenflouement);
     layout2->addRow("Monta&nt sortie de l'encaisse :",encaisse);
     layout2->addWidget(calEncaisse);
+    layout2->addWidget(ecart);
 
 
     QGroupBox *groupe2=new QGroupBox("Renflouement de la Petite Caisse");
@@ -100,6 +106,17 @@ Entree::Entree()
 
     connect(bouton1, SIGNAL(clicked()),qApp, SLOT(quit()));
     connect(bouton2, SIGNAL(clicked()),this, SLOT(genererCode()));
+
+}
+
+void Entree::ecartCaisse()
+{
+    if (montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value()==montReel->value())
+    {}
+    if (montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value()>montReel->value())
+    {valCaisse1->setValue(montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value()-montReel->value());}
+    else
+    {valCaisse2->setValue(montReel->value()-montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value());}
 
 }
 
