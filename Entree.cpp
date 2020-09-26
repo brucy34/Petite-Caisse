@@ -38,6 +38,7 @@ Entree::Entree()
     valCaisse1->setMaximum(1000000);
     valCaisse2->setMaximum(1000000);
     encaisse->setMaximum(1000000);
+    montReel->setMaximum(1000000);
 
 
     connect(calEncaisse, SIGNAL(clicked()), this, SLOT(additionner()));
@@ -111,12 +112,11 @@ Entree::Entree()
 
 void Entree::ecartCaisse()
 {
-    if (montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value()==montReel->value())
-    {}
+
     if (montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value()>montReel->value())
     {valCaisse1->setValue(montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value()-montReel->value());}
     else
-    {valCaisse2->setValue(montReel->value()-montantCreation->value()-fraisDeplacement->value()-fraisDivers->value()-fraisPoste->value()-fraisTransport->value()-fraisVente->value());}
+    {valCaisse2->setValue(montReel->value()-montantCreation->value()+fraisDeplacement->value()+fraisDivers->value()+fraisPoste->value()+fraisTransport->value()+fraisVente->value());}
 
 }
 
