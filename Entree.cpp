@@ -140,9 +140,12 @@ void Entree::genererCode()
     { code +="                         Frais de déplacement                        "+fraisDeplacement->text()+"\n";}
     if (fraisVente->text()!="0,00")
     { code +="                         Frais de vente                              "+fraisVente->text()+"\n";}
-    code +="                         Frais divers                                "+fraisDivers->text()+"\n";
-    code +="                         Déficit de caisse                           "+valCaisse1->text()+"\n";
-    code +="                         @Surplus de Caisse                                          "+valCaisse2->text()+"\n";
+    if (fraisDivers->text()!="0,00")
+    { code +="                         Frais divers                                "+fraisDivers->text()+"\n";}
+    if (valCaisse1->text()!="0,00")
+    { code +="                         Déficit de caisse                           "+valCaisse1->text()+"\n";}
+    if (valCaisse2->text()!="0,00")
+    { code +="                         @Surplus de Caisse                                          "+valCaisse2->text()+"\n";}
     code +="                         @Encaisse                                                   "+encaisse->text()+"\n";
     code +="                        Pour comptabliser le renflouement de la petite caisse\n";
     code +="                    ________________________________________________\n";
