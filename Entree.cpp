@@ -134,9 +134,12 @@ void Entree::genererCode()
     code +=dateRenflouement->date().toString();
     code +="       Frais de poste              ";
     code +="                "+ fraisPoste->text()+"\n";
-    code +="                         Frais de transport à l'achat                "+fraisTransport->text()+"\n";
-    code +="                         Frais de déplacement                        "+fraisDeplacement->text()+"\n";
-    code +="                         Frais de vente                              "+fraisVente->text()+"\n";
+    if (fraisTransport->text()!="0,00")
+    { code +="                         Frais de transport à l'achat                "+fraisTransport->text()+"\n";}
+    if (fraisDeplacement->text()!="0,00")
+    { code +="                         Frais de déplacement                        "+fraisDeplacement->text()+"\n";}
+    if (fraisVente->text()!="0,00")
+    { code +="                         Frais de vente                              "+fraisVente->text()+"\n";}
     code +="                         Frais divers                                "+fraisDivers->text()+"\n";
     code +="                         Déficit de caisse                           "+valCaisse1->text()+"\n";
     code +="                         @Surplus de Caisse                                          "+valCaisse2->text()+"\n";
