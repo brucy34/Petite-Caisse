@@ -73,7 +73,7 @@ Entree::Entree()
 
 
     QFormLayout *layout3=new QFormLayout();
-    layout3->addRow("Mon&tant de l'augmentation :",montAugmentation);
+    layout3->addRow("Montant de l'au&gmentation :",montAugmentation);
     layout3->addRow("Date de l'a&ugmentation :",dateAugmentation);
 
     augmentation=new QGroupBox("Augmentation de la Petite Caisse");
@@ -135,7 +135,7 @@ void Entree::genererCode()
 
     QString code;
 
-    code +="                             Journal Général                 \n";
+    code +="                                      Journal Général                 \n";
     code +="Date                |Noms et explications des comptes               |DT             |CT\n";
 
 
