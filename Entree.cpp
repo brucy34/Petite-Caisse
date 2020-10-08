@@ -135,7 +135,7 @@ void Entree::genererCode()
 
     QString code;
 
-    code +="                                      Journal Général                 \n";
+    code +="                                      Journal Général de la petite caisse                 \n";
     code +="Date                |Noms et explications des comptes               |DT             |CT\n";
 
 
